@@ -12,11 +12,11 @@ class TaskView extends StatelessWidget {
     return Scaffold(
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        child: const Column(
+        child: Column(
           children: [
             Expanded(
               child: Text(
-                'Title',
+                title,
                 style: TextStyle(fontSize: 30),
               ),
             ),
@@ -26,7 +26,7 @@ class TaskView extends StatelessWidget {
             ),
             Expanded(
               child: Text(
-                'Description',
+                description,
                 style: TextStyle(fontSize: 20),
               ),
             ),
