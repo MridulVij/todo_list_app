@@ -78,8 +78,6 @@ class TodoCubit extends Cubit<List<ToDoModel>> {
         .toList();
     emit(filteredList);
   }
-
-  // Sorting and searching methods...
 }
 
 
