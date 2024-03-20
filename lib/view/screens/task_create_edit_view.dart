@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:todo_list_app/model/utils/date_time_picker.dart';
 import 'package:todo_list_app/view/widgets/custom_button_container.dart';
 
 class TaskCreateEditView extends StatefulWidget {
@@ -19,6 +20,8 @@ class _TaskCreateEditViewState extends State<TaskCreateEditView> {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   List<String> priorityOptions = ['Low', 'Medium', 'High'];
+
+  DateTimePicker dateTimePicker = DateTimePicker();
 
   @override
   Widget build(BuildContext context) {
@@ -89,8 +92,10 @@ class _TaskCreateEditViewState extends State<TaskCreateEditView> {
                           style: TextStyle(fontSize: 15),
                         ),
                       ],
-                    ), () {
-                  print('tap');
+                    ), () async {
+                  // Date & Time Picker
+                  await dateTimePicker.selectDate(context);
+                  await dateTimePicker.selectTime(context);
                 }),
               ),
               Padding(

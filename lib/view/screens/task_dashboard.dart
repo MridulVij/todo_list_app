@@ -13,7 +13,11 @@ class TaskDashboard extends StatefulWidget {
 class _TaskDashboardState extends State<TaskDashboard> {
   TaskTileWidget taskTileWidget = TaskTileWidget();
 
-  List<String> sortOptions = ['Priority', 'Due Date', 'Creation Date'];
+  List<String> sortOptions = [
+    'Sort By Priority',
+    'Sort By Due Date',
+    'Sort By Creation Date'
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
