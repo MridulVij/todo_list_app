@@ -27,38 +27,94 @@ class _TaskReadEditViewState extends State<TaskReadEditView> {
         actions: [
           IconButton(
             onPressed: () {},
-            icon: Icon(Icons.done),
+            icon: const Icon(Icons.done),
           ),
         ],
       ),
       body: Column(
         children: [
           Expanded(
-            child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: Column(
-                children: [
-                  TextFormField(
-                    controller: titleController,
-                    decoration: InputDecoration(
-                        border: InputBorder.none, hintText: 'Title'),
-                  ),
-                  TextFormField(
-                    expands: true,
-                    controller: descriptionController,
-                    decoration: InputDecoration(
-                        border: InputBorder.none, hintText: 'Description'),
-                  )
-                ],
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Container(
+                margin:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                child: Column(
+                  children: [
+                    TextFormField(
+                      maxLines: null,
+                      style: const TextStyle(fontSize: 30),
+                      controller: titleController,
+                      decoration: const InputDecoration(
+                          border: InputBorder.none, hintText: 'Title'),
+                    ),
+                    const Divider(),
+                    TextFormField(
+                      style: const TextStyle(fontSize: 20),
+                      // expands: true,
+                      maxLines: null,
+                      controller: descriptionController,
+                      decoration: const InputDecoration(
+                          border: InputBorder.none, hintText: 'Description'),
+                    )
+                  ],
+                ),
               ),
             ),
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              customButtonContainer.customColorfulContainer(1, Text('Child'),
-                  () {
-                print('tap');
-              }),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+                child: customButtonContainer.customColorfulContainer(
+                    2,
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.watch_later_outlined,
+                          size: 20,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          'Set Reminder',
+                          style: TextStyle(fontSize: 15),
+                        ),
+                      ],
+                    ), () {
+                  print('tap');
+                }),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+                child: customButtonContainer.customColorfulContainer(
+                    1,
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.star_border,
+                          size: 20,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          'Set Priority',
+                          style: TextStyle(fontSize: 15),
+                        ),
+                      ],
+                    ), () {
+                  print('tap');
+                }),
+              ),
             ],
           )
         ],
