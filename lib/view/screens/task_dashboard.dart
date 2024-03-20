@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list_app/view/widgets/task_tile_widget.dart';
 
-import '../../model/routes/route_paths.dart';
+import '../../view_model/routes/route_paths.dart';
 
 class TaskDashboard extends StatefulWidget {
   const TaskDashboard({super.key});

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'model/routes/route_paths.dart';
-import 'model/routes/routes.dart';
+import 'view_model/routes/route_paths.dart';
+import 'view_model/routes/routes.dart';
 
 void main() {
   runApp(const MainApp());
