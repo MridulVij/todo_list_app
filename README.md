@@ -8,32 +8,30 @@ ToDo List App
    Inside 'Released APK' Folder The Final Build Apk Version is there!
    Download APK File - Google Drive Link -
 
-2. User Manual/Guide
-   I Have Set The 2 Modes in it, Read this to Understand the working of this app!
-   Test Accounts - In this the 2 Test User Accounts, 1 Account is Represent as a Doctor and Another Account is Represent as a Patient!
-   But, The Fact is The Patient Chat Screen is Also Using The Doctor UI Screen and its seems like we are talking to another Doctor by Showing them as a Patient, but actually it is!
-
 # Instructions
 
-1.
+1. User Manual/Guide
+   Step 1 - Open The App!
+   Step 2 - Click on '+' Button to Add ToDo Tasks!
+   Step 3 - Enter Title, Description, also able to Set Reminders, Set Priority and click on save button!
+   Step 4 - Click on search button to search for tasks by title and keyword, also able to sort the tasks according to Created Date, Due Date, Priority Wise as well!
+   Step 5 - Click on Task to See and Edit at Same time!
+   Step 6 - Woooho Congratulations! You Learn The Tutorial To Use This App, in Seconds!
+   Enjoy Now!
 
 # State Management
 
-1. Bloc - Business Logic Component. (But These Task Does'nt Require)
+1. Bloc - Business Logic Component.
 
 # Architecture
 
-1. MVC - Model View Controller, Clean Architecture.
+1. MVVM - Model View View Model.
 
 # Screens
 
-1. Dummy Login
-2. Dummy Home
-3. Patient
-4. Chat - With Working Functionality
+1. Task Dashboard Screen
+2. Task Creating and Editing Screen
 
-# Backend
+# Database
 
-1. Firebase
-   -Firestore Database for Users and Chat Messages
-   -Authentication for Dummy Message
+1. Shared Preferences

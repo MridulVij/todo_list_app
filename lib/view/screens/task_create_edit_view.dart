@@ -3,18 +3,18 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:todo_list_app/view/widgets/custom_button_container.dart';
 
-class TaskReadEditView extends StatefulWidget {
+class TaskCreateEditView extends StatefulWidget {
   // final String? taskTitle;
-  const TaskReadEditView({
+  const TaskCreateEditView({
     super.key,
     //  required this.taskTitle
   });
 
   @override
-  State<TaskReadEditView> createState() => _TaskReadEditViewState();
+  State<TaskCreateEditView> createState() => _TaskCreateEditViewState();
 }
 
-class _TaskReadEditViewState extends State<TaskReadEditView> {
+class _TaskCreateEditViewState extends State<TaskCreateEditView> {
   CustomButtonContainer customButtonContainer = CustomButtonContainer();
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
