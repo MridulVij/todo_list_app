@@ -18,7 +18,10 @@ class TaskView extends StatelessWidget {
                 style: TextStyle(fontSize: 30),
               ),
             ),
-            Divider(),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 20),
+              child: Divider(),
+            ),
             Expanded(
               child: Text(
                 'Description',
