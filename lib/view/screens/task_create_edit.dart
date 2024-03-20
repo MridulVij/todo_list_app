@@ -42,7 +42,7 @@ class _TaskCreateEditState extends State<TaskCreateEdit> {
                 descriptionController.text,
                 dateTimePicker.getDateTime,
                 DateTime.now(),
-                priorityPicker.value,
+                1,
               );
               Navigator.pop(context);
             },
