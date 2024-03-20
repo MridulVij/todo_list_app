@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_list_app/view_model/todo_cubit/todo_cubit.dart';
 
 class CustomSearchBox extends StatefulWidget {
   final TextEditingController controller;
@@ -20,10 +22,13 @@ class _CustomSearchBoxState extends State<CustomSearchBox> {
       ),
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: TextFormField(
+        onChanged: (value) {
+          context.read<TodoCubit>().searchByTitle(widget.controller.text);
+        },
         controller: widget.controller,
         decoration: const InputDecoration(
           border: InputBorder.none,
-          hintText: 'Username, Name, Date...',
+          hintText: 'Enter Task Title...',
           hintStyle: TextStyle(
             color: Color.fromARGB(92, 94, 169, 250),
           ),
