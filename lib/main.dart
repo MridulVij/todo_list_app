@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'view/screens/task_dashboard.dart';
-import 'view/screens/task_create_edit_view.dart';
+import 'model/routes/route_paths.dart';
+import 'model/routes/routes.dart';
 
 void main() {
   runApp(const MainApp());
@@ -18,9 +18,8 @@ class MainApp extends StatelessWidget {
         textTheme: GoogleFonts.dmSansTextTheme(),
         useMaterial3: true,
       ),
-      home: Scaffold(
-        body: TaskCreateEditView(),
-      ),
+      initialRoute: RoutesName.tasks_dashboard,
+      onGenerateRoute: Routes.generateRoute,
     );
   }
 }

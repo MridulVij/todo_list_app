@@ -8,11 +8,11 @@ import 'route_paths.dart';
 class Routes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     return PageRouteBuilder(
-      transitionDuration: const Duration(milliseconds: 190),
+      transitionDuration: const Duration(milliseconds: 100),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         const begin = Offset(1.0, 0.0);
         const end = Offset(0.0, 0.0);
-        const curve = Curves.linear;
+        const curve = Curves.easeInToLinear;
         var tween =
             Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
         var offsetAnimation = animation.drive(tween);
@@ -24,10 +24,11 @@ class Routes {
       pageBuilder: (context, animation, secondaryAnimation) {
         switch (settings.name) {
           case RoutesName.tasks_dashboard:
+            // dynamic str = settings.arguments; for data fetching from screen
             return const TaskDashboard();
           case RoutesName.search_tasks:
             return const TaskSearch();
-          case RoutesName.tasks_dashboard:
+          case RoutesName.create_view_edit_tasks:
             return const TaskCreateEditView();
 
           default:

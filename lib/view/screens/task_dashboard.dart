@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list_app/view/widgets/task_tile_widget.dart';
 
+import '../../model/routes/route_paths.dart';
+
 class TaskDashboard extends StatefulWidget {
   const TaskDashboard({super.key});
 
@@ -21,7 +23,9 @@ class _TaskDashboardState extends State<TaskDashboard> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, RoutesName.search_tasks);
+            },
             icon: Icon(Icons.search),
           ),
           PopupMenuButton(
@@ -56,7 +60,9 @@ class _TaskDashboardState extends State<TaskDashboard> {
       body: taskTileWidget.taskTile(1, 'Task Title', '20 March - 6 PM'),
       floatingActionButton: FloatingActionButton(
         shape: CircleBorder(),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, RoutesName.create_view_edit_tasks);
+        },
         elevation: 0.0,
         child: Center(child: Icon(Icons.add)),
       ),

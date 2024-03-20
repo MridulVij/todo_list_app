@@ -27,7 +27,9 @@ class _TaskCreateEditViewState extends State<TaskCreateEditView> {
         // title: Text(widget.taskTitle!),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pop(context);
+            },
             icon: const Icon(Icons.done),
           ),
         ],
