@@ -51,21 +51,18 @@ class TodoCubit extends Cubit<List<ToDoModel>> {
     saveTodos(updatedList);
   }
 
-  // Method to sort todos by priority
   void sortByPriority() {
     final List<ToDoModel> sortedList = List.from(state);
     sortedList.sort((a, b) => a.setPriority.compareTo(b.setPriority));
     emit(sortedList);
   }
 
-  // Method to sort todos by creation date
   void sortByCreationDate() {
     final List<ToDoModel> sortedList = List.from(state);
     sortedList.sort((a, b) => a.createdAt.compareTo(b.createdAt));
     emit(sortedList);
   }
 
-  // Method to sort todos by due date
   void sortByDueDate() {
     final List<ToDoModel> sortedList = List.from(state);
     sortedList.sort((a, b) => a.setDueDateTime.compareTo(b.setDueDateTime));
@@ -79,35 +76,3 @@ class TodoCubit extends Cubit<List<ToDoModel>> {
     emit(filteredList);
   }
 }
-
-
-/*
-
-  // Method to sort todos by priority
-  void sortByPriority() {
-    final List<ToDoModel> sortedList = List.from(state);
-    sortedList.sort((a, b) => a.setPriority.compareTo(b.setPriority));
-    emit(sortedList);
-  }
-
-  // Method to sort todos by creation date
-  void sortByCreationDate() {
-    final List<ToDoModel> sortedList = List.from(state);
-    sortedList.sort((a, b) => a.createdAt.compareTo(b.createdAt));
-    emit(sortedList);
-  }
-
-  // Method to sort todos by due date
-  void sortByDueDate() {
-    final List<ToDoModel> sortedList = List.from(state);
-    sortedList.sort((a, b) => a.setDueDateTime.compareTo(b.setDueDateTime));
-    emit(sortedList);
-  }
-
-  void searchByTitle(String query) {
-    final List<ToDoModel> filteredList = state
-        .where((todo) => todo.title.toLowerCase().contains(query.toLowerCase()))
-        .toList();
-    emit(filteredList);
-  }
-*/
