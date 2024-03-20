@@ -54,7 +54,48 @@ class TaskTileWidget {
               ),
             ],
           ),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert))
+          PopupMenuButton(
+              onSelected: (value) {
+                if (value == "edit") {
+                  // open edit page to edit the text
+                  // navigationtoeditpage(item);
+                } else if (value == "delete") {
+                  // delete the tile and refresh the page
+                  // deletebyID(itemId);
+                }
+              },
+              itemBuilder: (context) {
+                return [
+                  PopupMenuItem(
+                    value: 'edit',
+                    child: Row(
+                      children: const [
+                        Icon(Icons.edit),
+                        Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text('Edit'),
+                        )
+                      ],
+                    ),
+                  ),
+                  PopupMenuItem(
+                    value: 'delete',
+                    child: Row(
+                      children: const [
+                        Icon(
+                          Icons.delete,
+                          color: Colors.red,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text('Delete'),
+                        )
+                      ],
+                    ),
+                  )
+                ];
+              },
+              icon: const Icon(Icons.more_vert))
         ],
       ),
     );

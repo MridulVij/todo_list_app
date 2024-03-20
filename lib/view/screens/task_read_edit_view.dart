@@ -18,6 +18,7 @@ class _TaskReadEditViewState extends State<TaskReadEditView> {
   CustomButtonContainer customButtonContainer = CustomButtonContainer();
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
+  List<String> priorityOptions = ['Low', 'Medium', 'High'];
 
   @override
   Widget build(BuildContext context) {

@@ -7,9 +7,9 @@ class CustomButtonContainer {
     VoidCallback onPress,
   ) {
     return Ink(
-      height: 50,
+      height: 60,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(40),
+        borderRadius: (BorderRadius.circular(20)),
         color: (setPriority == 1)
             ? const Color.fromARGB(20, 76, 175, 79)
             : (setPriority == 2)
@@ -17,6 +17,7 @@ class CustomButtonContainer {
                 : const Color.fromARGB(20, 244, 67, 54),
       ),
       child: InkWell(
+        borderRadius: BorderRadius.circular(20),
         splashColor: (setPriority == 1)
             ? Colors.green
             : (setPriority == 2)
@@ -24,10 +25,8 @@ class CustomButtonContainer {
                 : Colors.red,
         onTap: onPress,
         child: Container(
-          height: 40,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(40),
-          ),
+          // height: 50,
+
           margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
           child: Center(
             child: childWidget,
