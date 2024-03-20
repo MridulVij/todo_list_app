@@ -7,7 +7,7 @@ class DateTimePicker {
   TimeOfDay _selectedTime = TimeOfDay.now();
 
 // after taking input from user
-  DateTime? _userSelectedDateTime;
+  DateTime? _userSelectedDate;
   TimeOfDay? _userSelectedTime;
 
   // set setTime(TimeOfDay value) {
@@ -18,8 +18,8 @@ class DateTimePicker {
   //   _selectedDate = value;
   // }
 
-  get getDateTime => _userSelectedDateTime;
-  // get getDate => _userSelectedDate;
+  get getDateTime => _userSelectedDate;
+  get getTime => _userSelectedDate;
 
   Future<void> selectDateTime(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -28,8 +28,7 @@ class DateTimePicker {
       firstDate: DateTime(2021),
       lastDate: DateTime(2100),
     );
-    if (picked != null && picked != _selectedDate)
-      _userSelectedDateTime = picked;
+    if (picked != null && picked != _selectedDate) _userSelectedDate = picked;
 //
     final TimeOfDay? ispicked = await showTimePicker(
       context: context,

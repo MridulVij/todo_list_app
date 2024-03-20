@@ -25,6 +25,7 @@ class _CustomSearchBoxState extends State<CustomSearchBox> {
         onChanged: (value) {
           context.read<TodoCubit>().searchByTitle(widget.controller.text);
         },
+        //Search error
         // controller: widget.controller,
         decoration: const InputDecoration(
           border: InputBorder.none,
