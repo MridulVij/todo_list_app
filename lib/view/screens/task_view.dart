@@ -2,10 +2,28 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class TaskView extends StatelessWidget {
-  final String title;
-  final String description;
-  const TaskView({super.key, required this.title, required this.description});
+class TaskView extends StatefulWidget {
+  final String? title;
+  final String? description;
+  final Object? map;
+  const TaskView({super.key, this.title, this.description, this.map});
+
+  @override
+  State<TaskView> createState() => _TaskViewState();
+}
+
+class _TaskViewState extends State<TaskView> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    editdataFetcher();
+  }
+
+  void editdataFetcher() {
+    Object? title = widget.map;
+    print(title);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +35,7 @@ class TaskView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                title,
+                widget.title!,
                 style: const TextStyle(fontSize: 30),
               ),
               const Padding(
@@ -25,7 +43,7 @@ class TaskView extends StatelessWidget {
                 child: Divider(),
               ),
               Text(
-                description,
+                widget.description!,
                 style: const TextStyle(fontSize: 20),
               ),
             ],

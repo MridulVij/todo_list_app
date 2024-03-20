@@ -1,3 +1,5 @@
+import 'dart:js_interop';
+
 import 'package:flutter/material.dart';
 import 'package:todo_list_app/view/screens/task_create_edit.dart';
 import 'package:todo_list_app/view/screens/task_dashboard.dart';
@@ -30,9 +32,9 @@ class Routes {
             return const TaskSearch();
           case RoutesName.create_view_edit_tasks:
             return const TaskCreateEdit();
-          // case RoutesName.tasks_view:
-          // dynamic str = settings.arguments;
-          //   return const TaskView(title: ,description: ,);
+          case RoutesName.tasks_view:
+            Object? str = settings.arguments;
+            return TaskView(map: str);
           default:
             return const Scaffold(
               body: Center(
