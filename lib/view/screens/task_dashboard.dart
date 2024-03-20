@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_list_app/model/model/todo_model.dart';
+import 'package:todo_list_app/view/screens/task_view.dart';
 import 'package:todo_list_app/view/widgets/task_tile_widget.dart';
 import '../../view_model/helper.dart';
 import '../../view_model/routes/route_paths.dart';
@@ -36,12 +37,14 @@ class _TaskDashboardState extends State<TaskDashboard> {
           ),
           PopupMenuButton(
               onSelected: (value) {
-                if (value == "edit") {
+                if (value == sortOptions[0]) {
                   // open edit page to edit the text
-                  // navigationtoeditpage(item);
-                } else if (value == "delete") {
+                  context.read<TodoCubit>().sortByPriority();
+                } else if (value == sortOptions[1]) {
                   // delete the tile and refresh the page
-                  // deletebyID(itemId);
+                  context.read<TodoCubit>().sortByDueDate();
+                } else if (value == sortOptions[2]) {
+                  context.read<TodoCubit>().sortByCreationDate();
                 }
               },
               itemBuilder: (context) {
@@ -68,12 +71,24 @@ class _TaskDashboardState extends State<TaskDashboard> {
           return ListView.builder(
             itemCount: todos.length,
             itemBuilder: ((context, index) {
-              return TaskTileWidget(
-                titleMessage: todos[index].title,
-                dueDate: helper.formatDateTime(todos[index].setDueDateTime),
-                setPriority: todos[index].setPriority,
-                deleteItemId: index,
-                editItemId: index,
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => TaskView(
+                          title: todos[index].title,
+                          description: todos[index].description),
+                    ),
+                  );
+                },
+                child: TaskTileWidget(
+                  titleMessage: todos[index].title,
+                  dueDate: helper.formatDateTime(todos[index].setDueDateTime),
+                  setPriority: todos[index].setPriority,
+                  deleteItemId: index,
+                  editItemId: index,
+                ),
               );
             }),
           );

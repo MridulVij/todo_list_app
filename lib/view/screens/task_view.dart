@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class TaskView extends StatelessWidget {
-  const TaskView({super.key});
+  final String title;
+  final String description;
+  const TaskView({super.key, required this.title, required this.description});
 
   @override
   Widget build(BuildContext context) {

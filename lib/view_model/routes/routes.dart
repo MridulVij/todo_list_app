@@ -25,14 +25,14 @@ class Routes {
       pageBuilder: (context, animation, secondaryAnimation) {
         switch (settings.name) {
           case RoutesName.tasks_dashboard:
-            // dynamic str = settings.arguments; for data fetching from screen
             return const TaskDashboard();
           case RoutesName.search_tasks:
             return const TaskSearch();
           case RoutesName.create_view_edit_tasks:
             return const TaskCreateEdit();
-          case RoutesName.tasks_view:
-            return const TaskView();
+          // case RoutesName.tasks_view:
+          // dynamic str = settings.arguments;
+          //   return const TaskView(title: ,description: ,);
           default:
             return const Scaffold(
               body: Center(
