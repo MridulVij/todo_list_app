@@ -25,7 +25,7 @@ class _CustomSearchBoxState extends State<CustomSearchBox> {
         onChanged: (value) {
           context.read<TodoCubit>().searchByTitle(widget.controller.text);
         },
-        controller: widget.controller,
+        // controller: widget.controller,
         decoration: const InputDecoration(
           border: InputBorder.none,
           hintText: 'Enter Task Title...',
