@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'view/screens/task_dashboard_view.dart';
+import 'view/screens/task_dashboard.dart';
 import 'view/screens/task_create_edit_view.dart';
 
 void main() {
@@ -15,7 +15,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        // textTheme: GoogleFonts.dmSansTextTheme,
+        textTheme: GoogleFonts.dmSansTextTheme(),
         useMaterial3: true,
       ),
       home: Scaffold(
