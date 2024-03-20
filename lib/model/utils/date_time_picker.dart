@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class DateTimePicker {
 // before taking input from user or we can say initial stage

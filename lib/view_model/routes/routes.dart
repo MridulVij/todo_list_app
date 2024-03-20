@@ -1,5 +1,3 @@
-import 'dart:js_interop';
-
 import 'package:flutter/material.dart';
 import 'package:todo_list_app/view/screens/task_create_edit.dart';
 import 'package:todo_list_app/view/screens/task_dashboard.dart';
