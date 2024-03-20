@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:todo_list_app/view/screens/task_create_edit_view.dart';
+import 'package:todo_list_app/view/screens/task_create_edit.dart';
 import 'package:todo_list_app/view/screens/task_dashboard.dart';
 
 import '../../view/screens/task_search.dart';
+import '../../view/screens/task_view.dart';
 import 'route_paths.dart';
 
 class Routes {
@@ -29,8 +30,9 @@ class Routes {
           case RoutesName.search_tasks:
             return const TaskSearch();
           case RoutesName.create_view_edit_tasks:
-            return const TaskCreateEditView();
-
+            return const TaskCreateEdit();
+          case RoutesName.tasks_view:
+            return const TaskView();
           default:
             return const Scaffold(
               body: Center(

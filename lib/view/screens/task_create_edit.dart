@@ -4,18 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:todo_list_app/model/utils/date_time_picker.dart';
 import 'package:todo_list_app/view/widgets/custom_button_container.dart';
 
-class TaskCreateEditView extends StatefulWidget {
+class TaskCreateEdit extends StatefulWidget {
   // final String? taskTitle;
-  const TaskCreateEditView({
+  const TaskCreateEdit({
     super.key,
     //  required this.taskTitle
   });
 
   @override
-  State<TaskCreateEditView> createState() => _TaskCreateEditViewState();
+  State<TaskCreateEdit> createState() => _TaskCreateEditState();
 }
 
-class _TaskCreateEditViewState extends State<TaskCreateEditView> {
+class _TaskCreateEditState extends State<TaskCreateEdit> {
   CustomButtonContainer customButtonContainer = CustomButtonContainer();
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
