@@ -15,6 +15,13 @@ class TaskDashboard extends StatefulWidget {
 }
 
 class _TaskDashboardState extends State<TaskDashboard> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    context.read<TodoCubit>().loadTodos();
+  }
+
   Helper helper = Helper();
   List<String> sortOptions = [
     'Sort By Priority',

@@ -39,10 +39,6 @@ class _CustomSearchBoxState extends State<CustomSearchBox> {
               Icons.search,
               color: Colors.black,
             ),
-            // child: SvgPicture.asset(
-            //   CustomIcons.search,
-            //   height: 8,
-            //   width: 8,
           ),
         ),
       ),
