@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_list_app/model/model/todo_model.dart';
 import 'package:todo_list_app/view/widgets/task_tile_widget.dart';
-
+import '../../view_model/helper.dart';
 import '../../view_model/routes/route_paths.dart';
+import '../../view_model/todo_cubit/todo_cubit.dart';
 
 class TaskDashboard extends StatefulWidget {
   const TaskDashboard({super.key});
@@ -11,12 +14,11 @@ class TaskDashboard extends StatefulWidget {
 }
 
 class _TaskDashboardState extends State<TaskDashboard> {
-  TaskTileWidget taskTileWidget = TaskTileWidget();
-
+  Helper helper = Helper();
   List<String> sortOptions = [
     'Sort By Priority',
     'Sort By Due Date',
-    'Sort By Creation Date'
+    'Sort By Creation Date',
   ];
   @override
   Widget build(BuildContext context) {
@@ -61,7 +63,22 @@ class _TaskDashboardState extends State<TaskDashboard> {
               icon: const Icon(Icons.more_vert))
         ],
       ),
-      body: taskTileWidget.taskTile(1, 'Task Title', '20 March - 6 PM'),
+      body: BlocBuilder<TodoCubit, List<ToDoModel>>(
+        builder: (context, todos) {
+          return ListView.builder(
+            itemCount: todos.length,
+            itemBuilder: ((context, index) {
+              return TaskTileWidget(
+                titleMessage: todos[index].title,
+                dueDate: helper.formatDateTime(todos[index].setDueDateTime),
+                setPriority: todos[index].setPriority,
+                deleteItemId: index,
+                editItemId: index,
+              );
+            }),
+          );
+        },
+      ),
       floatingActionButton: FloatingActionButton(
         shape: CircleBorder(),
         onPressed: () {

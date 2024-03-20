@@ -1,8 +1,11 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_list_app/model/utils/date_time_picker.dart';
+import 'package:todo_list_app/model/utils/priority_picker.dart';
 import 'package:todo_list_app/view/widgets/custom_button_container.dart';
+import 'package:todo_list_app/view_model/helper.dart';
+import 'package:todo_list_app/view_model/todo_cubit/todo_cubit.dart';
 
 class TaskCreateEdit extends StatefulWidget {
   // final String? taskTitle;
@@ -17,11 +20,14 @@ class TaskCreateEdit extends StatefulWidget {
 
 class _TaskCreateEditState extends State<TaskCreateEdit> {
   CustomButtonContainer customButtonContainer = CustomButtonContainer();
+
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   List<String> priorityOptions = ['Low', 'Medium', 'High'];
-
+  // CustomButtonContainer customButtonContainer = CustomButtonContainer();
   DateTimePicker dateTimePicker = DateTimePicker();
+  PriorityPicker priorityPicker = PriorityPicker();
+  Helper helper = Helper();
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +37,13 @@ class _TaskCreateEditState extends State<TaskCreateEdit> {
         actions: [
           IconButton(
             onPressed: () {
+              BlocProvider.of<TodoCubit>(context).addToDo(
+                titleController.text,
+                descriptionController.text,
+                dateTimePicker.getDateTime,
+                DateTime.now(),
+                priorityPicker.value,
+              );
               Navigator.pop(context);
             },
             icon: const Icon(Icons.done),
@@ -94,8 +107,7 @@ class _TaskCreateEditState extends State<TaskCreateEdit> {
                       ],
                     ), () async {
                   // Date & Time Picker
-                  await dateTimePicker.selectDate(context);
-                  await dateTimePicker.selectTime(context);
+                  await dateTimePicker.selectDateTime(context);
                 }),
               ),
               Padding(
@@ -121,6 +133,8 @@ class _TaskCreateEditState extends State<TaskCreateEdit> {
                       ],
                     ), () {
                   print('tap');
+                  // Set Priority
+                  helper.showPrioritySetBox(context);
                 }),
               ),
             ],

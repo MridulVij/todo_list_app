@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class DateTimePicker {
 // before taking input from user or we can say initial stage
@@ -6,7 +7,7 @@ class DateTimePicker {
   TimeOfDay _selectedTime = TimeOfDay.now();
 
 // after taking input from user
-  DateTime? _userSelectedDate;
+  DateTime? _userSelectedDateTime;
   TimeOfDay? _userSelectedTime;
 
   // set setTime(TimeOfDay value) {
@@ -17,24 +18,25 @@ class DateTimePicker {
   //   _selectedDate = value;
   // }
 
-  get getTime => _userSelectedTime;
-  get getDate => _userSelectedDate;
+  get getDateTime => _userSelectedDateTime;
+  // get getDate => _userSelectedDate;
 
-  Future<void> selectDate(BuildContext context) async {
+  Future<void> selectDateTime(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime(2021),
       lastDate: DateTime(2100),
     );
-    if (picked != null && picked != _selectedDate) _userSelectedDate = picked;
-  }
-
-  Future<void> selectTime(BuildContext context) async {
-    final TimeOfDay? picked = await showTimePicker(
+    if (picked != null && picked != _selectedDate)
+      _userSelectedDateTime = picked;
+//
+    final TimeOfDay? ispicked = await showTimePicker(
       context: context,
       initialTime: TimeOfDay.now(),
     );
-    if (picked != null && picked != _selectedTime) _userSelectedTime = picked;
+    if (picked != null && picked != _selectedTime)
+      // error was here
+      _userSelectedTime = ispicked;
   }
 }
