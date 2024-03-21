@@ -1,18 +1,21 @@
 import 'dart:convert';
 
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:flutter/material.dart';
+
 class ToDoModel {
   final String title;
   final String description;
   final DateTime createdAt;
-  final DateTime setDueDateTime;
+  final DateTime setDueDate;
+  final TimeOfDay setDueTime;
   final int setPriority;
 
   ToDoModel({
     required this.title,
     required this.description,
     required this.createdAt,
-    required this.setDueDateTime,
+    required this.setDueDate,
+    required this.setDueTime,
     required this.setPriority,
   });
 
@@ -21,7 +24,8 @@ class ToDoModel {
       'title': title,
       'description': description,
       'createdAt': createdAt.millisecondsSinceEpoch,
-      'setDueDateTime': setDueDateTime.millisecondsSinceEpoch,
+      'setDueDate': setDueDate.millisecondsSinceEpoch,
+      'setDueTime': setDueTime.hour,
       'setPriority': setPriority,
     };
   }
@@ -31,8 +35,10 @@ class ToDoModel {
       title: map['title'] as String,
       description: map['description'] as String,
       createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int),
-      setDueDateTime:
-          DateTime.fromMillisecondsSinceEpoch(map['setDueDateTime'] as int),
+      // setDueDate: DateTime.fromMillisecondsSinceEpoch(map['setDueDate'] as int),
+      // setDueTime: TimeOfDay(hour: map['setDueTime'] as int ?? 0, minute: 0),
+      setDueDate: DateTime.now(),
+      setDueTime: TimeOfDay.now(),
       setPriority: map['setPriority'] as int,
     );
   }

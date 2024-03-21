@@ -17,8 +17,8 @@ class DateTimePicker {
   //   _selectedDate = value;
   // }
 
-  get getDateTime => _userSelectedDate;
-  get getTime => _userSelectedDate;
+  get getDate => _userSelectedDate;
+  get getTime => _userSelectedTime;
 
   Future<void> selectDateTime(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -37,4 +37,6 @@ class DateTimePicker {
       // error was here
       _userSelectedTime = ispicked;
   }
+
+  void dueDateReminder() {}
 }

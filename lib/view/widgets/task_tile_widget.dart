@@ -7,6 +7,7 @@ class TaskTileWidget extends StatelessWidget {
   final int setPriority;
   final String titleMessage;
   final String dueDate;
+  final String dueTime;
   final int? deleteItemId;
   final int? editItemId;
 
@@ -17,6 +18,7 @@ class TaskTileWidget extends StatelessWidget {
     required this.setPriority,
     required this.titleMessage,
     required this.dueDate,
+    required this.dueTime,
   }) : super(key: key);
 
   @override
@@ -67,7 +69,7 @@ class TaskTileWidget extends StatelessWidget {
                   Container(
                     margin: const EdgeInsets.only(left: 10, bottom: 10),
                     child: Text(
-                      dueDate,
+                      '$dueDate - $dueTime',
                       style: const TextStyle(fontSize: 15),
                     ),
                   ),

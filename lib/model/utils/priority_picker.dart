@@ -2,7 +2,7 @@ class PriorityPicker {
   //
   int _value = 0;
 
-  get value => _value;
+  int get value => _value;
 
   set prioritySetter(int value) {
     _value = value;

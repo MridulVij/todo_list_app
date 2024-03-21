@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo_list_app/model/model/todo_model.dart';
 
@@ -25,13 +26,14 @@ class TodoCubit extends Cubit<List<ToDoModel>> {
     await prefs.setString('todos', jsonString);
   }
 
-  void addToDo(String title, String description, DateTime setDueDateTime,
-      DateTime createdAt, int setPriority) {
+  void addToDo(String title, String description, DateTime setDueDate,
+      TimeOfDay setDueTime, DateTime createdAt, int setPriority) {
     final todo = ToDoModel(
       title: title,
       description: description,
       createdAt: createdAt,
-      setDueDateTime: setDueDateTime,
+      setDueDate: setDueDate,
+      setDueTime: setDueTime,
       setPriority: setPriority,
     );
     final List<ToDoModel> updatedList = List.from(state)..add(todo);
@@ -65,7 +67,7 @@ class TodoCubit extends Cubit<List<ToDoModel>> {
 
   void sortByDueDate() {
     final List<ToDoModel> sortedList = List.from(state);
-    sortedList.sort((a, b) => a.setDueDateTime.compareTo(b.setDueDateTime));
+    sortedList.sort((a, b) => a.setDueDate.compareTo(b.setDueDate));
     emit(sortedList);
   }
 

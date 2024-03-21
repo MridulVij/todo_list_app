@@ -50,8 +50,10 @@ class _TaskSearchState extends State<TaskSearch> {
                         },
                         child: TaskTileWidget(
                           titleMessage: todos[index].title,
-                          dueDate: helper
-                              .formatDateTime(todos[index].setDueDateTime),
+                          dueDate:
+                              helper.formatDateTime(todos[index].setDueDate),
+                          dueTime:
+                              helper.formatTimeOfDay(todos[index].setDueTime),
                           setPriority: todos[index].setPriority,
                           deleteItemId: index,
                           editItemId: index,

@@ -39,9 +39,10 @@ class _TaskCreateEditState extends State<TaskCreateEdit> {
               BlocProvider.of<TodoCubit>(context).addToDo(
                 titleController.text,
                 descriptionController.text,
-                dateTimePicker.getDateTime,
+                dateTimePicker.getDate,
+                dateTimePicker.getTime,
                 DateTime.now(),
-                1,
+                priorityPicker.value,
               );
               Navigator.pop(context);
             },
