@@ -55,7 +55,7 @@ class TodoCubit extends Cubit<List<ToDoModel>> {
 
   void sortByPriority() {
     final List<ToDoModel> sortedList = List.from(state);
-    sortedList.sort((a, b) => a.setPriority.compareTo(b.setPriority));
+    sortedList.sort((b, a) => b.setPriority.compareTo(a.setPriority));
     emit(sortedList);
   }
 

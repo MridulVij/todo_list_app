@@ -1,6 +1,17 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:todo_list_app/model/utils/date_time_picker.dart';
 
 class LocalNotifications {
+  DateTimePicker dateTimePicker = DateTimePicker();
+
+  void createReminder() {
+    if (dateTimePicker.isMatchingDateTime()) {
+      showSimpleNotification(body: 'test', payload: 'test', title: 'test');
+    } else {
+      print('not working!');
+    }
+  }
+
   static final FlutterLocalNotificationsPlugin
       _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
   // static final onClickNotification = BehaviorSubject<String>();

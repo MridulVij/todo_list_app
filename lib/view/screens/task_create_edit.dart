@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_list_app/model/model/todo_model.dart';
 import 'package:todo_list_app/model/utils/date_time_picker.dart';
+import 'package:todo_list_app/model/utils/local_notification.dart';
 import 'package:todo_list_app/model/utils/priority_picker.dart';
 import 'package:todo_list_app/view/widgets/custom_button_container.dart';
 import 'package:todo_list_app/view_model/helper.dart';
@@ -27,7 +29,7 @@ class _TaskCreateEditState extends State<TaskCreateEdit> {
   DateTimePicker dateTimePicker = DateTimePicker();
   PriorityPicker priorityPicker = PriorityPicker();
   Helper helper = Helper();
-
+  LocalNotifications localNotifications = LocalNotifications();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,6 +38,7 @@ class _TaskCreateEditState extends State<TaskCreateEdit> {
         actions: [
           IconButton(
             onPressed: () {
+              Duration(seconds: 2);
               BlocProvider.of<TodoCubit>(context).addToDo(
                 titleController.text,
                 descriptionController.text,
@@ -44,6 +47,8 @@ class _TaskCreateEditState extends State<TaskCreateEdit> {
                 DateTime.now(),
                 priorityPicker.value,
               );
+              localNotifications.createReminder();
+
               Navigator.pop(context);
             },
             icon: const Icon(Icons.done),

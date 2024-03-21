@@ -35,10 +35,8 @@ class ToDoModel {
       title: map['title'] as String,
       description: map['description'] as String,
       createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int),
-      // setDueDate: DateTime.fromMillisecondsSinceEpoch(map['setDueDate'] as int),
-      // setDueTime: TimeOfDay(hour: map['setDueTime'] as int ?? 0, minute: 0),
-      setDueDate: DateTime.now(),
-      setDueTime: TimeOfDay.now(),
+      setDueDate: DateTime.fromMillisecondsSinceEpoch(map['setDueDate'] as int),
+      setDueTime: TimeOfDay(hour: map['setDueTime'] as int ?? 0, minute: 0),
       setPriority: map['setPriority'] as int,
     );
   }
@@ -47,4 +45,14 @@ class ToDoModel {
 
   factory ToDoModel.fromJson(String source) =>
       ToDoModel.fromMap(json.decode(source) as Map<String, dynamic>);
+
+  // Method to check if current date and time match the user's selected date and time
+  // bool isMatchingDateTime() {
+  //   final now = DateTime.now();
+  //   return now.year == setDueDate.year &&
+  //       now.month == setDueDate.month &&
+  //       now.day == setDueDate.day &&
+  //       now.hour == setDueTime.hour &&
+  //       now.minute == setDueTime.minute;
+  // }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_list_app/model/model/todo_model.dart';
 
 class DateTimePicker {
 // before taking input from user or we can say initial stage
@@ -38,5 +39,12 @@ class DateTimePicker {
       _userSelectedTime = ispicked;
   }
 
-  void dueDateReminder() {}
+  bool isMatchingDateTime() {
+    final now = DateTime.now();
+    return now.year == getTime.year &&
+        now.month == getTime.month &&
+        now.day == getTime.day &&
+        now.hour == getTime.hour &&
+        now.minute == getTime.minute;
+  }
 }
