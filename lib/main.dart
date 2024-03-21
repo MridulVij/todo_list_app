@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'model/utils/local_notification.dart';
 import 'view_model/routes/route_paths.dart';
 import 'view_model/routes/routes.dart';
 import 'view_model/todo_cubit/todo_cubit.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp();
+  await LocalNotifications.init();
+
   runApp(const MainApp());
 }
 

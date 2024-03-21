@@ -38,7 +38,7 @@ class _TaskCreateEditState extends State<TaskCreateEdit> {
         actions: [
           IconButton(
             onPressed: () {
-              Duration(seconds: 2);
+              // Duration(seconds: 2);
               BlocProvider.of<TodoCubit>(context).addToDo(
                 titleController.text,
                 descriptionController.text,

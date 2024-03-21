@@ -7,7 +7,7 @@ class DateTimePicker {
   TimeOfDay _selectedTime = TimeOfDay.now();
 
 // after taking input from user
-  DateTime? _userSelectedDate;
+  late DateTime? _userSelectedDate;
   TimeOfDay? _userSelectedTime;
 
   // set setTime(TimeOfDay value) {
@@ -41,10 +41,9 @@ class DateTimePicker {
 
   bool isMatchingDateTime() {
     final now = DateTime.now();
-    return now.year == getTime.year &&
-        now.month == getTime.month &&
-        now.day == getTime.day &&
-        now.hour == getTime.hour &&
-        now.minute == getTime.minute;
+
+    return now.month == _userSelectedDate!.month &&
+        now.year == _userSelectedDate!.year &&
+        now.timeZoneName == _userSelectedDate!.timeZoneName;
   }
 }
