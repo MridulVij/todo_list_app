@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:todo_list_app/model/model/todo_model.dart';
 
 class DateTimePicker {
 // before taking input from user or we can say initial stage
@@ -7,16 +6,8 @@ class DateTimePicker {
   TimeOfDay _selectedTime = TimeOfDay.now();
 
 // after taking input from user
-  late DateTime? _userSelectedDate;
+  DateTime? _userSelectedDate;
   TimeOfDay? _userSelectedTime;
-
-  // set setTime(TimeOfDay value) {
-  //   _selectedTime = value;
-  // }
-
-  // set setDate(DateTime value) {
-  //   _selectedDate = value;
-  // }
 
   get getDate => _userSelectedDate;
   get getTime => _userSelectedTime;
@@ -28,22 +19,26 @@ class DateTimePicker {
       firstDate: DateTime(2021),
       lastDate: DateTime(2100),
     );
-    if (picked != null && picked != _selectedDate) _userSelectedDate = picked;
+    if (picked != null && picked != _selectedDate) {
+      _userSelectedDate = picked;
+    }
 //
     final TimeOfDay? ispicked = await showTimePicker(
       context: context,
       initialTime: TimeOfDay.now(),
     );
-    if (picked != null && picked != _selectedTime)
+    if (picked != null && picked != _selectedTime) {
       // error was here
       _userSelectedTime = ispicked;
+    }
   }
 
   bool isMatchingDateTime() {
     final now = DateTime.now();
-
-    return now.month == _userSelectedDate!.month &&
-        now.year == _userSelectedDate!.year &&
-        now.timeZoneName == _userSelectedDate!.timeZoneName;
+    return true;
+    // now.month == getDate.month &&
+    //     now.year == getDate.year &&
+    //     now.timeZoneName == getDate.timeZoneName &&
+    //     now.second == getDate.second;
   }
 }

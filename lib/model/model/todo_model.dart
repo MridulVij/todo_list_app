@@ -1,58 +1,84 @@
-import 'dart:convert';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 
 import 'package:flutter/material.dart';
 
 class ToDoModel {
-  final String title;
-  final String description;
-  final DateTime createdAt;
-  final DateTime setDueDate;
-  final TimeOfDay setDueTime;
-  final int setPriority;
+  int _Id;
+  String _title;
+  String _description;
+  DateTime _createdAt;
+  DateTime _setDueDate;
+  TimeOfDay _setDueTime;
+  int _setPriority;
 
-  ToDoModel({
-    required this.title,
-    required this.description,
-    required this.createdAt,
-    required this.setDueDate,
-    required this.setDueTime,
-    required this.setPriority,
-  });
+  ToDoModel(
+    this._Id,
+    this._title,
+    this._description,
+    this._createdAt,
+    this._setDueDate,
+    this._setDueTime,
+    this._setPriority,
+  );
+
+  int get Id => _Id;
+  int get setPriority => _setPriority;
+  String get title => _title;
+  String get description => _description;
+  DateTime get createdAt => _createdAt;
+  DateTime get setDueDate => _setDueDate;
+  TimeOfDay get setDueTime => _setDueTime;
+
+  set description(String value) {
+    this._description = value;
+  }
+
+  set title(String value) {
+    this._title = value;
+  }
+
+  set Id(int value) {
+    this._Id = value;
+  }
+
+  set createdDate(DateTime value) {
+    this._createdAt = value;
+  }
+
+  set setDueDate(DateTime value) {
+    this._setDueDate = value;
+  }
+
+  set setDueTime(TimeOfDay value) {
+    this._setDueTime = value;
+  }
+
+  set setPriority(int value) {
+    this._setPriority = value;
+  }
 
   Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'title': title,
-      'description': description,
-      'createdAt': createdAt.millisecondsSinceEpoch,
-      'setDueDate': setDueDate.millisecondsSinceEpoch,
-      'setDueTime': setDueTime.hour,
-      'setPriority': setPriority,
-    };
+    var map = Map<String, dynamic>();
+    if (Id != null) {
+      map['Id'] = _Id;
+    }
+    map['title'] = _title;
+    map['description'] = _description;
+    map['setPriority'] = _setPriority;
+    map['createdAt'] = _createdAt;
+    map['setDueDate'] = _setDueDate;
+    map['setDueTime'] = _setDueTime;
+
+    return map;
   }
 
-  factory ToDoModel.fromMap(Map<String, dynamic> map) {
-    return ToDoModel(
-      title: map['title'] as String,
-      description: map['description'] as String,
-      createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int),
-      setDueDate: DateTime.fromMillisecondsSinceEpoch(map['setDueDate'] as int),
-      setDueTime: TimeOfDay(hour: map['setDueTime'] as int ?? 0, minute: 0),
-      setPriority: map['setPriority'] as int,
-    );
+  ToDoModel.fromMap(Map<String, dynamic> map) {
+    this._Id = map['Id'];
+    this._title = map['title'];
+    this._description = map['description'];
+    this._createdAt = map['createdDate'];
+    this._setDueDate = map['setDueDate'];
+    this._setDueTime = map['setDueTime'];
+    this._setPriority = map['setPriority'];
   }
-
-  String toJson() => json.encode(toMap());
-
-  factory ToDoModel.fromJson(String source) =>
-      ToDoModel.fromMap(json.decode(source) as Map<String, dynamic>);
-
-  // Method to check if current date and time match the user's selected date and time
-  // bool isMatchingDateTime() {
-  //   final now = DateTime.now();
-  //   return now.year == setDueDate.year &&
-  //       now.month == setDueDate.month &&
-  //       now.day == setDueDate.day &&
-  //       now.hour == setDueTime.hour &&
-  //       now.minute == setDueTime.minute;
-  // }
 }
