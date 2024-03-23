@@ -29,6 +29,8 @@ class Routes {
           case RoutesName.search_tasks:
             return const TaskSearch();
           case RoutesName.create_view_edit_tasks:
+            String vari = settings.arguments.toString();
+            print(vari);
             return const TaskCreateEdit();
           case RoutesName.tasks_view:
             Object? str = settings.arguments;
