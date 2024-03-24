@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_list_app/model/model/todo_model.dart';
 import 'package:todo_list_app/model/utils/date_time_picker.dart';
 import 'package:todo_list_app/model/utils/local_notification.dart';
 import 'package:todo_list_app/model/utils/priority_picker.dart';
 import 'package:todo_list_app/view/widgets/custom_button_container.dart';
 import 'package:todo_list_app/view_model/helper.dart';
-import 'package:todo_list_app/view_model/todo_cubit/todo_cubit.dart';
 
 class TaskCreateEdit extends StatefulWidget {
   // final String? taskTitle;
@@ -20,34 +18,35 @@ class TaskCreateEdit extends StatefulWidget {
 }
 
 class _TaskCreateEditState extends State<TaskCreateEdit> {
-  CustomButtonContainer customButtonContainer = CustomButtonContainer();
+  //
+  //
+  //
+  //
 
+  CustomButtonContainer customButtonContainer = CustomButtonContainer();
+  LocalNotifications localNotifications = LocalNotifications();
+  DateTimePicker dateTimePicker = DateTimePicker();
+  PriorityPicker priorityPicker = PriorityPicker();
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   List<String> priorityOptions = ['Low', 'Medium', 'High'];
-  // CustomButtonContainer customButtonContainer = CustomButtonContainer();
-  DateTimePicker dateTimePicker = DateTimePicker();
-  PriorityPicker priorityPicker = PriorityPicker();
   Helper helper = Helper();
-  LocalNotifications localNotifications = LocalNotifications();
+
+  //
+  //
+  //
+  //
+  //
+  //
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // title: Text(widget.taskTitle!),
         actions: [
           IconButton(
             onPressed: () {
-              // Duration(seconds: 2);
-              BlocProvider.of<TodoCubit>(context).addToDo(
-                titleController.text,
-                descriptionController.text,
-                dateTimePicker.getDate,
-                dateTimePicker.getTime,
-                DateTime.now(),
-                priorityPicker.value,
-              );
-              localNotifications.createReminder();
+              ToDoModel();
+              // localNotifications.createReminder();
 
               Navigator.pop(context);
             },

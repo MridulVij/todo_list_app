@@ -1,5 +1,4 @@
 class ToDoModel {
-  // Variables
   int? id;
   String? title;
   String? description;
@@ -8,7 +7,6 @@ class ToDoModel {
   String? setDueTime;
   int? setPriority;
 
-  // Constructor
   ToDoModel({
     this.id,
     this.title,
@@ -19,57 +17,24 @@ class ToDoModel {
     this.setPriority,
   });
 
-  // Convert ToDo Model into Map
-  Map<String, Object?> toMap() => {
-        'id': id,
-        'title': title,
-        'description': description,
-        'createdAt': createdAt,
-        'setDueDate': setDueDate,
-        'setDueTime': setDueTime,
-        'setPriority': setPriority,
-      };
+  ToDoModel.fromJson(Map<String, dynamic> json) {
+    title = json['title'];
+    description = json['description'];
+    createdAt = json['createdAt'];
+    setDueDate = json['setDueDate'];
+    setDueTime = json['setDueTime'];
+    setPriority = json['setPriority'];
+  }
 
-  // Convert to String
-  @override
-  String toString() =>
-      'ToDoModel{id: $id, title: $title, description: $description, createdAt: $createdAt, setDueDate: $setDueDate, setDueTime: $setDueTime, setPriority: $setPriority}';
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['title'] = title;
+    data['description'] = description;
+    data['createdAt'] = createdAt;
+    data['setDueDate'] = setDueDate;
+    data['setDueTime'] = setDueTime;
+    data['setPriority'] = setPriority;
 
-// // Getter
-//   int get Id => _Id;
-//   int get setPriority => _setPriority;
-//   String get title => _title;
-//   String get description => _description;
-//   String get createdAt => _createdAt;
-//   String get setDueDate => _setDueDate;
-//   String get setDueTime => _setDueTime;
-
-// // Setter
-//   set description(String value) {
-//     this._description = value;
-//   }
-
-//   set title(String value) {
-//     this._title = value;
-//   }
-
-//   set Id(int value) {
-//     this._Id = value;
-//   }
-
-//   set createdDate(String value) {
-//     this._createdAt = value;
-//   }
-
-//   set setDueDate(String value) {
-//     this._setDueDate = value;
-//   }
-
-//   set setDueTime(String value) {
-//     this._setDueTime = value;
-//   }
-
-//   set setPriority(int value) {
-//     this._setPriority = value;
-//   }
+    return data;
+  }
 }
