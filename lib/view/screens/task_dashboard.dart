@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_list_app/model/model/todo_model.dart';
 import 'package:todo_list_app/view/screens/task_view.dart';
 import 'package:todo_list_app/view/widgets/task_tile_widget.dart';
+import 'package:todo_list_app/view_model/cubit/todo_cubit.dart';
 import '../../view_model/helper.dart';
 import '../../view_model/routes/route_paths.dart';
 
@@ -16,6 +19,7 @@ class _TaskDashboardState extends State<TaskDashboard> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    context.read<TodoCubit>().getData();
   }
 
   Helper helper = Helper();
@@ -70,23 +74,37 @@ class _TaskDashboardState extends State<TaskDashboard> {
               icon: const Icon(Icons.more_vert))
         ],
       ),
-      body: ListView.builder(
-        itemCount: todos.length,
-        itemBuilder: ((context, index) {
-          return GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => TaskView(
-                      title: todos[index].title,
-                      description: todos[index].description),
+      body: BlocBuilder<TodoCubit, List<ToDoModel>>(
+        builder: (context, state) {
+          // final todos = context.read<TodoCubit>().getTodo;
+          List<ToDoModel> todos = state;
+
+          return ListView.builder(
+            itemCount: todos.length,
+            itemBuilder: ((context, index) {
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => TaskView(
+                          title: todos[index].title,
+                          description: todos[index].description),
+                    ),
+                  );
+                },
+                child: TaskTileWidget(
+                  dueDate: todos[index].setDueDate!,
+                  dueTime: todos[index].setDueTime!,
+                  setPriority: todos[index].setPriority!,
+                  titleMessage: todos[index].title!,
+                  deleteItemId: 1,
+                  editItemId: 1,
                 ),
               );
-            },
-            child: TaskTileWidget(),
+            }),
           );
-        }),
+        },
       ),
       floatingActionButton: FloatingActionButton(
         shape: CircleBorder(),

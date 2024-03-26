@@ -9,8 +9,8 @@ class DateTimePicker {
   DateTime? _userSelectedDate;
   TimeOfDay? _userSelectedTime;
 
-  get getDate => _userSelectedDate;
-  get getTime => _userSelectedTime;
+  DateTime? get getDate => _userSelectedDate;
+  TimeOfDay? get getTime => _userSelectedTime;
 
   Future<void> selectDateTime(BuildContext context) async {
     final DateTime? picked = await showDatePicker(

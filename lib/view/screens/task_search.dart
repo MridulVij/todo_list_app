@@ -22,37 +22,37 @@ class _TaskSearchState extends State<TaskSearch> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 30, left: 10, right: 10),
-              child: CustomSearchBox(
-                controller: searchController,
-              ),
-            ),
-            Expanded(
-                child: ListView.builder(
-              itemCount: todos.length,
-              itemBuilder: ((context, index) {
-                return GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => TaskView(
-                            title: todos[index].title,
-                            description: todos[index].description),
-                      ),
-                    );
-                  },
-                  child: TaskTileWidget(),
-                );
-              }),
-            )),
-          ],
-        ),
-      ),
-    );
+        // body: SafeArea(
+        //   child: Column(
+        //     children: [
+        //       Padding(
+        //         padding: const EdgeInsets.only(top: 30, left: 10, right: 10),
+        //         child: CustomSearchBox(
+        //           controller: searchController,
+        //         ),
+        //       ),
+        //       Expanded(
+        //           child: ListView.builder(
+        //         itemCount: todos.length,
+        //         itemBuilder: ((context, index) {
+        //           return GestureDetector(
+        //             onTap: () {
+        //               Navigator.push(
+        //                 context,
+        //                 MaterialPageRoute(
+        //                   builder: (context) => TaskView(
+        //                       title: todos[index].title,
+        //                       description: todos[index].description),
+        //                 ),
+        //               );
+        //             },
+        //             child: TaskTileWidget(),
+        //           );
+        //         }),
+        //       )),
+        //     ],
+        //   ),
+        // ),
+        );
   }
 }

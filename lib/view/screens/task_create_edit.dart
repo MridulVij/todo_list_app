@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:todo_list_app/model/model/todo_model.dart';
 import 'package:todo_list_app/model/utils/date_time_picker.dart';
 import 'package:todo_list_app/model/utils/local_notification.dart';
 import 'package:todo_list_app/model/utils/priority_picker.dart';
 import 'package:todo_list_app/view/widgets/custom_button_container.dart';
+import 'package:todo_list_app/view_model/cubit/todo_cubit.dart';
 import 'package:todo_list_app/view_model/helper.dart';
 
 class TaskCreateEdit extends StatefulWidget {
@@ -45,8 +48,17 @@ class _TaskCreateEditState extends State<TaskCreateEdit> {
         actions: [
           IconButton(
             onPressed: () {
-              ToDoModel();
-              // localNotifications.createReminder();
+              final toDoModel = ToDoModel(
+                  createdAt: DateTime.now().toString(),
+                  description: descriptionController.text,
+                  setDueDate:
+                      DateFormat('h:mm a').format(dateTimePicker.getDate!),
+                  setDueTime:
+                      '${dateTimePicker.getTime!.hour}:${dateTimePicker.getTime!.minute}',
+                  setPriority: priorityPicker.value,
+                  title: titleController.text);
+              context.read<TodoCubit>().insertData(toDoModel);
+              localNotifications.createReminder();
 
               Navigator.pop(context);
             },

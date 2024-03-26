@@ -4,23 +4,28 @@ import 'package:sqflite/sqflite.dart';
 import 'package:todo_list_app/model/model/todo_model.dart';
 
 class SQLDatabase {
+  String _dataBaseName = "todo";
+  final String _tableName = "todoTable";
   static late Database _db;
 
-  static Future<void> initializeDatabase() async {
+  Future<void> initializeDatabase() async {
     // here we are initializing the database
+
     Directory applicationDirectory = await getApplicationDocumentsDirectory();
 
-    String databasePath = "${applicationDirectory.path}notes.db";
+    String databasePath = "${applicationDirectory.path}$_dataBaseName.db";
+    print(databasePath);
     // here we are creating the database
     _db = await openDatabase(databasePath, version: 1,
         onCreate: (db, version) async {
       await db.execute(
-          'CREATE TABLE Notes (id INTEGER PRIMARY KEY, title TEXT, description TEXT, time INTEGER)');
+          'CREATE TABLE todoTable(id INTEGER PRIMARY KEY, title TEXT, description TEXT, createdAt TEXT, setDueDate TEXT, setDueTime INTEGER, setPriority INTEGER)');
     });
+    print(_db);
   }
 
-  static Future<List<ToDoModel>> getDataFromDatabase() async {
-    final result = await _db.query("Notes");
+  Future<List<ToDoModel>> readData() async {
+    final result = await _db.query(_tableName);
 
     List<ToDoModel> notesModel =
         result.map((e) => ToDoModel.fromJson(e)).toList();
@@ -28,22 +33,22 @@ class SQLDatabase {
     return notesModel;
   }
 
-  static Future<void> insertData(ToDoModel model) async {
-    final result = await _db.insert("Notes", model.toJson());
+  Future<void> insertData(ToDoModel model) async {
+    final result = await _db.insert(_tableName, model.toJson());
 
     print(result);
   }
 
-  static Future<void> deleteDataFromDatabase(int time) async {
+  Future<void> deleteData(int Id) async {
     final result =
-        await _db.delete("Notes", where: "time = ?", whereArgs: [time]);
+        await _db.delete(_tableName, where: "Id = ?", whereArgs: [Id]);
 
     print(result);
   }
 
-  static Future<void> updateDataInDatabase(ToDoModel model, int time) async {
+  Future<void> updateData(ToDoModel model, int Id) async {
     final result = await _db
-        .update("Notes", model.toJson(), where: "time = ?", whereArgs: [time]);
+        .update(_tableName, model.toJson(), where: "Id = ?", whereArgs: [Id]);
 
     print(result);
   }
