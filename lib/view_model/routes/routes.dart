@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todo_list_app/view/screens/task_create_edit.dart';
+import 'package:todo_list_app/view/screens/task_create.dart';
 import 'package:todo_list_app/view/screens/task_dashboard.dart';
 
 import '../../view/screens/task_search.dart';
@@ -31,7 +31,9 @@ class Routes {
           case RoutesName.create_view_edit_tasks:
             String vari = settings.arguments.toString();
             print(vari);
-            return const TaskCreateEdit();
+            return TaskCreate(
+              id: vari,
+            );
           case RoutesName.tasks_view:
             Object? str = settings.arguments;
             return TaskView(map: str);

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_list_app/view_model/routes/route_paths.dart';
+
+import '../../view_model/cubit/todo_cubit.dart';
 
 class TaskTileWidget extends StatelessWidget {
   final int setPriority;
@@ -84,7 +87,7 @@ class TaskTileWidget extends StatelessWidget {
                   arguments: editItemId,
                 );
               } else if (value == "delete") {
-                // BlocProvider.of<TodoCubit>(context).deleteToDo(deleteItemId!);
+                context.read<TodoCubit>().deleteData(deleteItemId!);
               }
             },
             itemBuilder: (context) {

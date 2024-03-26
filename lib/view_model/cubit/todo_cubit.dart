@@ -2,34 +2,50 @@ import 'package:bloc/bloc.dart';
 import 'package:todo_list_app/model/model/todo_model.dart';
 import 'package:todo_list_app/model/repository/sql_database.dart';
 
-// part of 'todo_state.dart';
 class TodoCubit extends Cubit<List<ToDoModel>> {
-  TodoCubit() : super([]);
-  SQLDatabase sqlDatabase = SQLDatabase();
-  List<ToDoModel> _todoData = [];
+  final SQLDatabase sqlDatabase = SQLDatabase();
 
-  List<ToDoModel> get getTodo => _todoData;
+  TodoCubit() : super([]);
 
   void requestPermission() {
     sqlDatabase.initializeDatabase();
   }
 
-  //
   void getData() async {
-    _todoData = await sqlDatabase.readData();
-    emit(_todoData);
+    final todoData = await sqlDatabase.readData();
+    emit(todoData);
   }
 
   void insertData(ToDoModel toDoModel) async {
     await sqlDatabase.insertData(toDoModel);
+    getData(); // Refresh data after insertion
   }
 
   void updateData(ToDoModel toDoModel, int id) async {
     await sqlDatabase.updateData(toDoModel, id);
+    getData(); // Refresh data after update
   }
 
   void deleteData(int id) async {
     await sqlDatabase.deleteData(id);
+    getData(); // Refresh data after deletion
   }
-  //
+
+  // void sortByPriority() {
+  //   final List<ToDoModel> currentState = List.from(state);
+  //   currentState.sort((a, b) => a.priority.compareTo(b.priority));
+  //   emit(currentState);
+  // }
+
+  // void sortByDueDate() {
+  //   final List<ToDoModel> currentState = List.from(state);
+  //   currentState.sort((a, b) => a.dueDate.compareTo(b.dueDate));
+  //   emit(currentState);
+  // }
+
+  // void sortByCreationDate() {
+  //   final List<ToDoModel> currentState = List.from(state);
+  //   currentState.sort((a, b) => a.creationDate.compareTo(b.creationDate));
+  //   emit(currentState);
+  // }
 }

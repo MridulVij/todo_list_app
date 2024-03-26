@@ -1,34 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todo_list_app/model/model/todo_model.dart';
-import 'package:todo_list_app/view/screens/task_view.dart';
-import 'package:todo_list_app/view/widgets/task_tile_widget.dart';
-import 'package:todo_list_app/view_model/cubit/todo_cubit.dart';
+
+import '../../model/model/todo_model.dart';
+import '../../view_model/cubit/todo_cubit.dart';
 import '../../view_model/helper.dart';
 import '../../view_model/routes/route_paths.dart';
+import '../widgets/task_tile_widget.dart';
+import 'task_view.dart';
 
 class TaskDashboard extends StatefulWidget {
-  const TaskDashboard({super.key});
+  const TaskDashboard({Key? key}) : super(key: key);
 
   @override
   State<TaskDashboard> createState() => _TaskDashboardState();
 }
 
 class _TaskDashboardState extends State<TaskDashboard> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    context.read<TodoCubit>().getData();
-    context.read<TodoCubit>().getTodo;
-  }
-
-  Helper helper = Helper();
-  List<String> sortOptions = [
+  final Helper helper = Helper();
+  final List<String> sortOptions = [
     'Sort By Priority',
     'Sort By Due Date',
     'Sort By Creation Date',
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    context.read<TodoCubit>().getData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,36 +74,46 @@ class _TaskDashboardState extends State<TaskDashboard> {
               icon: const Icon(Icons.more_vert))
         ],
       ),
-      body: BlocBuilder<TodoCubit, List<ToDoModel>>(
-        builder: (context, state) {
-          // final todos = context.read<TodoCubit>().getTodo;
-          List<ToDoModel> todos = state;
-
-          return ListView.builder(
-            itemCount: todos.length,
-            itemBuilder: ((context, index) {
-              return GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => TaskView(
-                          title: todos[index].title,
-                          description: todos[index].description),
-                    ),
-                  );
-                },
-                child: TaskTileWidget(
-                  dueDate: todos[index].setDueDate!,
-                  dueTime: todos[index].setDueTime!,
-                  setPriority: todos[index].setPriority!,
-                  titleMessage: todos[index].title!,
-                  deleteItemId: 1,
-                  editItemId: 1,
-                ),
-              );
-            }),
-          );
+      body: StreamBuilder<List<ToDoModel>>(
+        stream: context.read<TodoCubit>().stream,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            final List<ToDoModel>? todoList = snapshot.data as List<ToDoModel>?;
+            return ListView.builder(
+              itemCount: todoList!.length,
+              itemBuilder: (context, index) {
+                final ToDoModel todo = todoList[index];
+                print('ID: ${todo.id}');
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => TaskView(
+                          title: todo.title,
+                          description: todo.description,
+                        ),
+                      ),
+                    );
+                  },
+                  child: TaskTileWidget(
+                    dueDate: todo.setDueDate!,
+                    dueTime: todo.setDueTime!,
+                    setPriority: todo.setPriority!,
+                    titleMessage: todo.title!,
+                    deleteItemId: todo.id,
+                    editItemId: todo.id,
+                  ),
+                );
+              },
+            );
+          } else if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          } else {
+            return Text('Error! Try again!');
+          }
         },
       ),
       floatingActionButton: FloatingActionButton(

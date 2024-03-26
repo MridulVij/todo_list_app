@@ -7,6 +7,8 @@ class SQLDatabase {
   String _dataBaseName = "todo";
   final String _tableName = "todoTable";
   static late Database _db;
+  int? _id;
+  get id => _id;
 
   Future<void> initializeDatabase() async {
     // here we are initializing the database
@@ -35,20 +37,20 @@ class SQLDatabase {
 
   Future<void> insertData(ToDoModel model) async {
     final result = await _db.insert(_tableName, model.toJson());
-
+    _id = result;
     print(result);
   }
 
   Future<void> deleteData(int Id) async {
     final result =
-        await _db.delete(_tableName, where: "Id = ?", whereArgs: [Id]);
+        await _db.delete(_tableName, where: "id = ?", whereArgs: [Id]);
 
     print(result);
   }
 
   Future<void> updateData(ToDoModel model, int Id) async {
     final result = await _db
-        .update(_tableName, model.toJson(), where: "Id = ?", whereArgs: [Id]);
+        .update(_tableName, model.toJson(), where: "id = ?", whereArgs: [Id]);
 
     print(result);
   }

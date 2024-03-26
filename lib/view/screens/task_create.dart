@@ -9,18 +9,17 @@ import 'package:todo_list_app/view/widgets/custom_button_container.dart';
 import 'package:todo_list_app/view_model/cubit/todo_cubit.dart';
 import 'package:todo_list_app/view_model/helper.dart';
 
-class TaskCreateEdit extends StatefulWidget {
-  // final String? taskTitle;
-  const TaskCreateEdit({
-    super.key,
-    //  required this.taskTitle
-  });
+import '../../model/repository/sql_database.dart';
+
+class TaskCreate extends StatefulWidget {
+  final String? id;
+  const TaskCreate({super.key, required this.id});
 
   @override
-  State<TaskCreateEdit> createState() => _TaskCreateEditState();
+  State<TaskCreate> createState() => _TaskCreateState();
 }
 
-class _TaskCreateEditState extends State<TaskCreateEdit> {
+class _TaskCreateState extends State<TaskCreate> {
   //
   //
   //
@@ -49,6 +48,7 @@ class _TaskCreateEditState extends State<TaskCreateEdit> {
           IconButton(
             onPressed: () {
               final toDoModel = ToDoModel(
+                  id: SQLDatabase().id as int,
                   createdAt: DateTime.now().toString(),
                   description: descriptionController.text,
                   setDueDate:
@@ -77,6 +77,9 @@ class _TaskCreateEditState extends State<TaskCreateEdit> {
                 child: Column(
                   children: [
                     TextFormField(
+                      onChanged: (value) {
+                        // for edit title
+                      },
                       maxLines: null,
                       style: const TextStyle(fontSize: 30),
                       controller: titleController,
@@ -85,6 +88,9 @@ class _TaskCreateEditState extends State<TaskCreateEdit> {
                     ),
                     const Divider(),
                     TextFormField(
+                      onChanged: (value) {
+                        // for edit description
+                      },
                       style: const TextStyle(fontSize: 20),
                       // expands: true,
                       maxLines: null,
