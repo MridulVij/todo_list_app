@@ -20,6 +20,7 @@ class _TaskDashboardState extends State<TaskDashboard> {
     // TODO: implement initState
     super.initState();
     context.read<TodoCubit>().getData();
+    context.read<TodoCubit>().getTodo;
   }
 
   Helper helper = Helper();

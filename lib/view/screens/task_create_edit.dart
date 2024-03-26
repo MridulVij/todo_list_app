@@ -52,7 +52,7 @@ class _TaskCreateEditState extends State<TaskCreateEdit> {
                   createdAt: DateTime.now().toString(),
                   description: descriptionController.text,
                   setDueDate:
-                      DateFormat('h:mm a').format(dateTimePicker.getDate!),
+                      DateFormat('dd/mm/yy').format(dateTimePicker.getDate!),
                   setDueTime:
                       '${dateTimePicker.getTime!.hour}:${dateTimePicker.getTime!.minute}',
                   setPriority: priorityPicker.value,
