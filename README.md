@@ -34,4 +34,4 @@ ToDo List App
 
 # Database
 
-1. Shared Preferences
+1. sqflite - SQLite Database

@@ -28,7 +28,7 @@ class MainApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           textTheme: GoogleFonts.dmSansTextTheme(),
-          useMaterial3: true,
+          useMaterial3: false,
         ),
         initialRoute: RoutesName.tasks_dashboard,
         onGenerateRoute: Routes.generateRoute,

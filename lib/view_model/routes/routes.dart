@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list_app/view/screens/task_create.dart';
 import 'package:todo_list_app/view/screens/task_dashboard.dart';
-
 import '../../view/screens/task_search.dart';
 import '../../view/screens/task_view.dart';
 import 'route_paths.dart';
@@ -9,11 +8,11 @@ import 'route_paths.dart';
 class Routes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     return PageRouteBuilder(
-      transitionDuration: const Duration(milliseconds: 100),
+      transitionDuration: const Duration(milliseconds: 200),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        const begin = Offset(1.0, 0.0);
+        const begin = Offset(0.0, 0.0);
         const end = Offset(0.0, 0.0);
-        const curve = Curves.easeInToLinear;
+        const curve = Curves.bounceIn;
         var tween =
             Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
         var offsetAnimation = animation.drive(tween);
