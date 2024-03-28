@@ -12,7 +12,7 @@ import 'package:todo_list_app/view_model/helper.dart';
 import '../../model/repository/sql_database.dart';
 
 class TaskCreate extends StatefulWidget {
-  final String? id;
+  final int? id;
   const TaskCreate({super.key, required this.id});
 
   @override
@@ -48,7 +48,7 @@ class _TaskCreateState extends State<TaskCreate> {
           IconButton(
             onPressed: () {
               final toDoModel = ToDoModel(
-                  id: SQLDatabase().id as int,
+                  id: widget.id as int,
                   createdAt: DateTime.now().toString(),
                   description: descriptionController.text,
                   setDueDate:

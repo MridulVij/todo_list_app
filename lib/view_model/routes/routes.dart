@@ -28,10 +28,10 @@ class Routes {
           case RoutesName.search_tasks:
             return const TaskSearch();
           case RoutesName.create_view_edit_tasks:
-            String vari = settings.arguments.toString();
-            print(vari);
+            int id = settings.arguments as int ?? 123344342;
+            print('Id is: $id');
             return TaskCreate(
-              id: vari,
+              id: id,
             );
           case RoutesName.tasks_view:
             Object? str = settings.arguments;

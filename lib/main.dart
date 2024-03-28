@@ -9,8 +9,8 @@ import 'view_model/routes/routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
-  // await LocalNotifications.init();
+
+  await LocalNotifications.init();
   await SQLDatabase().initializeDatabase();
 
   runApp(const MainApp());
@@ -28,7 +28,7 @@ class MainApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           textTheme: GoogleFonts.dmSansTextTheme(),
-          useMaterial3: false,
+          useMaterial3: true,
         ),
         initialRoute: RoutesName.tasks_dashboard,
         onGenerateRoute: Routes.generateRoute,
